@@ -14,7 +14,7 @@ app.use(morgan('dev'))
 app.use(log)
 
 //Puerto en el que se abre el servidor
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3001
 
 app.get('/', (req, res) => {
   res.send('Hola Edem')
