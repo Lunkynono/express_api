@@ -3,6 +3,8 @@ import morgan from 'morgan'
 import router from './routes/index.js'
 import { log } from './middlewares/log.js'
 import './cron/cron.js'
+import { dbConnection } from './config/db.js'
+import { error } from 'lunkynono-logger'
 
 const app = express()
 
@@ -23,6 +25,13 @@ app.get('/', (req, res) => {
 
 app.use('/', router)
 
-app.listen(PORT, () => {
-  console.log('Server is running on port ' + PORT)
-})
+dbConnection()
+  .then(() => {
+    console.log('Database connected')
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`)
+    })
+  })
+  .catch(error => {
+    console.error('Error connecting to database', error)
+  })
