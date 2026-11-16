@@ -1,6 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
-import router from './routes/user.routes.js'
+import router from './routes/index.js'
 import { log } from './middlewares/log.js'
 import './cron/cron.js'
 
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   res.send('Hola Edem')
 })
 
-app.use('/users', router)
+app.use('/', router)
 
 app.listen(PORT, () => {
   console.log('Server is running on port ' + PORT)
