@@ -1,5 +1,6 @@
 /*Este archivo nos sirve para no tener todo este código en user.routes.js
   De esa forma importamos este archivo en user.routes.js con menos código*/
+import User from '../models/user.model.js'
 
 export const getUser = (req, res) => {
   res.status(200).json('Todos los usuarios')
@@ -20,4 +21,9 @@ export const deleteUser = (req, res) => {
   console.log(req.params.id)
 
   res.status(200).json('Usuario eliminado')
+}
+
+export const getUserProfile = async (req, res) => {
+  const user = await User.find({ email: req.user.email })
+  res.json(user)
 }

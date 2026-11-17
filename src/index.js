@@ -4,7 +4,6 @@ import router from './routes/index.js'
 import { log } from './middlewares/log.js'
 import './cron/cron.js'
 import { dbConnection } from './config/db.js'
-import { error } from 'lunkynono-logger'
 
 const app = express()
 
